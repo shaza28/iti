@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../core/theme/app_data.dart';
+import '../core/theme/app_colors.dart';
+import '../core/theme/app_images.dart';
 import '../core/book_data.dart';
 import '../screens/product_details_screen.dart';
 import '../widgets/custom_book_card.dart';
@@ -156,34 +157,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: "Best Sellers",
               ),
 
-              const SizedBox(height: 16),
-
-              const CustomBestSellerCard(
-                image: AppImages.book1,
-                title: "Organic Rhythm",
-                author: "Julian Greene",
-                price: "\$21.50",
-                rate: "4.8",
+              CustomBestSellerCard(
+                book: books[4],
               ),
 
               const SizedBox(height: 15),
 
-              const CustomBestSellerCard(
-                image: AppImages.book2,
-                title: "The Glass City",
-                author: "Ariel S. Thorne",
-                price: "\$18.99",
-                rate: "4.7",
+              CustomBestSellerCard(
+                book: books[3],
               ),
 
               const SizedBox(height: 15),
 
-              const CustomBestSellerCard(
-                image: AppImages.book3,
-                title: "Echoes",
-                author: "James Carter",
-                price: "\$27.00",
-                rate: "4.9",
+              CustomBestSellerCard(
+                book: books[2],
               ),
 
               const SizedBox(height: 30),

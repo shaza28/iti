@@ -1,5 +1,5 @@
 import '../models/book_model.dart';
-import 'theme/app_data.dart';
+import 'theme/app_images.dart';
 
 const List<BookModel> books = [
   BookModel(

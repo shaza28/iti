@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import '../core/theme/app_data.dart';
+import '../core/theme/app_colors.dart';
+import '../core/theme/app_images.dart';
+import '../core/theme/app_routes.dart';
 import '../core/ui_utils.dart';
 import '../firebase/firebase_service.dart';
 import '../models/user_models.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/custom_form_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -118,25 +121,9 @@ const SizedBox(height: 25),
   Container(
     width: double.infinity,
     height: 52,
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.darkBlue,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-      onPressed: () {
-        createAccount();
-      },
-      child: const Text(
-        "Create Account",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 17,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+    child: CustomButton(
+      text: "Create Account",
+      onPressed: createAccount,
     ),
   ),
 

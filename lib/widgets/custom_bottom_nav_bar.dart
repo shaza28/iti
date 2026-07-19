@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../core/theme/app_data.dart';
+import '../core/theme/app_colors.dart';
+import '../core/theme/app_images.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -15,7 +16,7 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       currentIndex: currentIndex,
-      onTap: onTap, // <-- ده كان ناقص
+      onTap: onTap,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: AppColors.darkBlue,
       unselectedItemColor: AppColors.gray,

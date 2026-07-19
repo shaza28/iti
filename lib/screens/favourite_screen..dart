@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../core/favourite_data.dart';
-import '../core/theme/app_data.dart';
+import '../core/theme/app_colors.dart';
+import '../core/theme/app_images.dart';
 import '../core/book_data.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 import '../widgets/custom_favourite_card.dart';

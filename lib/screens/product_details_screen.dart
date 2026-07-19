@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../core/theme/app_data.dart';
+import '../core/theme/app_colors.dart';
+import '../core/theme/app_images.dart';
 import '../core/cart_data.dart';
 import '../models/book_model.dart';
 import '../models/cart_model.dart';
@@ -30,9 +31,9 @@ class ProductDetailsScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 18),
+            padding: const EdgeInsets.only(right: 18),
             child: Icon(Icons.search, color: AppColors.black),
           ),
         ],
@@ -79,11 +80,11 @@ class ProductDetailsScreen extends StatelessWidget {
                   color: AppColors.darkBlue,
                   onTap: () {},
                 ),
-                const CustomActionButton(
+               CustomActionButton(
                   icon: Icons.share_outlined,
                   title: "Share",
                 ),
-                const CustomActionButton(
+               CustomActionButton(
                   icon: Icons.remove_red_eye_outlined,
                   title: "Preview",
                 ),

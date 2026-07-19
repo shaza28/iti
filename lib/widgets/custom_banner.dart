@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../core/theme/app_data.dart';
+import '../core/theme/app_colors.dart';
+import '../core/theme/app_images.dart';
 
 class CustomBanner extends StatelessWidget {
   const CustomBanner({super.key});

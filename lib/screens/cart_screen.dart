@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
 import '../core/cart_data.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/custom_cart_card.dart';
 import 'favourite_screen..dart';
 import 'home_screen.dart';
@@ -119,27 +120,11 @@ class _CartScreenState extends State<CartScreen> {
                     width: double.infinity,
                     height: 55,
 
-                    child: ElevatedButton(
-                      onPressed: () {},
-
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                        AppColors.darkBlue,
-
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                          BorderRadius.circular(16),
-                        ),
-                      ),
-
-                      child: const Text(
-                        "Checkout",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                    child: CustomButton(
+                      text: "Checkout",
+                      onPressed: () {
+                        // Checkout Logic
+                      },
                     ),
                   ),
                 ],

@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import '../core/theme/app_data.dart';
+import '../core/cart_data.dart';
+import '../core/theme/app_colors.dart';
+import '../core/theme/app_images.dart';
+import '../models/book_model.dart';
+import 'custom_button.dart';
 
 class CustomBestSellerCard extends StatelessWidget {
-  final String image;
-  final String title;
-  final String author;
-  final String price;
-  final String rate;
+  final BookModel book;
 
   const CustomBestSellerCard({
     super.key,
-    required this.image,
-    required this.title,
-    required this.author,
-    required this.price,
-    required this.rate,
+    required this.book,
   });
 
   @override
@@ -38,7 +34,7 @@ class CustomBestSellerCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
-              image,
+              book.image,
               width: 75,
               height: 100,
               fit: BoxFit.cover,
@@ -52,7 +48,7 @@ class CustomBestSellerCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  book.title,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -62,7 +58,7 @@ class CustomBestSellerCard extends StatelessWidget {
                 const SizedBox(height: 4),
 
                 Text(
-                  author,
+                  book.author,
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 13,
@@ -79,14 +75,14 @@ class CustomBestSellerCard extends StatelessWidget {
                       size: 18,
                     ),
                     const SizedBox(width: 4),
-                    Text(rate),
+                    Text(book.rate),
                   ],
                 ),
 
                 const SizedBox(height: 10),
 
                 Text(
-                  price,
+                  book.price,
                   style: TextStyle(
                     color: AppColors.darkBlue,
                     fontSize: 17,
@@ -97,15 +93,23 @@ class CustomBestSellerCard extends StatelessWidget {
             ),
           ),
 
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.darkBlue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
+          SizedBox(
+            width: 110,
+            child: CustomButton(
+              text: "Add To Cart",
+              height: 42,
+              borderRadius: 12,
+              fontSize: 13,
+              onPressed: () {
+                addToCart(book);
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("${book.title} added to cart"),
+                  ),
+                );
+              },
             ),
-            child: const Text("Add To Cart",style:TextStyle(color: AppColors.white) ,),
           ),
         ],
       ),
