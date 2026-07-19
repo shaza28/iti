@@ -41,9 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Theme(
+    data: ThemeData.light(),
+    child: Scaffold(
       backgroundColor: AppColors.whiteBlue,
-
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -183,8 +184,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-    );
-  }
+    ),);
+    }
 
   void login() async {
     if (_loginFormKey.currentState!.validate()) {

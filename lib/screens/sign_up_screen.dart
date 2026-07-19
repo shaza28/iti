@@ -46,8 +46,9 @@ super.dispose();
 
 @override
 Widget build(BuildContext context) {
-return Scaffold(
-backgroundColor: AppColors.whiteBlue,
+return Theme(
+  data: ThemeData.light(),
+  child: Scaffold(
 
 body: SafeArea(
 child: SingleChildScrollView(
@@ -214,7 +215,7 @@ const SizedBox(height: 25),
 ),
 ),
 ),
-),
+),)
 );
 }
 

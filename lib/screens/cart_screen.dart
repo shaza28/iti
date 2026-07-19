@@ -28,20 +28,24 @@ class _CartScreenState extends State<CartScreen> {
 
     return total;
   }
-
+  late final isDark =
+      Theme.of(context).brightness == Brightness.dark;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
-
+      backgroundColor:
+      isDark ? AppColors.black : AppColors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor:isDark ? AppColors.black : AppColors.white,
+
         elevation: 0,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           "My Cart",
           style: TextStyle(
-            color: AppColors.darkBlue,
+            color:  isDark
+                ? Colors.white
+                : AppColors.darkBlue,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -76,11 +80,11 @@ class _CartScreenState extends State<CartScreen> {
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color:isDark ? AppColors.black : AppColors.white,
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(.05),
+                    color: AppColors.black.withOpacity(.05),
                     blurRadius: 10,
                   ),
                 ],
@@ -137,39 +141,32 @@ class _CartScreenState extends State<CartScreen> {
       ),
 
       bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: currentIndex,
-
+        currentIndex: 2,
         onTap: (index) {
-
           switch (index) {
-
             case 0:
-
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (_) => const HomeScreen(),
                 ),
               );
-
               break;
 
             case 1:
-
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (_) =>
-                  const FavouriteScreen(),
+                  builder: (_) => const FavouriteScreen(),
                 ),
               );
-
               break;
 
             case 2:
               break;
 
             case 3:
+            // Profile Screen
               break;
           }
         },

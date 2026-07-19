@@ -1,36 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../core/theme/app_colors.dart';
+import '../providers/theme_provider.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isDark =
+        context.watch<ThemeProvider>().themeMode == ThemeMode.dark;
+
     return Container(
       height: 56,
       decoration: BoxDecoration(
-        color: const Color(0xffF7F8FC),
+        color: isDark ? const Color(0xFF2A2A2A) : AppColors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.05),
+            color: AppColors.black.withOpacity(.05),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
         ],
       ),
-      child: const TextField(
+      child: TextField(
+        style: TextStyle(
+          color: isDark ? Colors.white : Colors.black,
+        ),
         decoration: InputDecoration(
           border: InputBorder.none,
           prefixIcon: Icon(
             Icons.search,
-            color: Color(0xff7B8794),
+            color: isDark ? Colors.white70 : AppColors.gray,
           ),
           hintText: "Search by title, author, or genre...",
           hintStyle: TextStyle(
-            color: Color(0xff9CA3AF),
+            color: isDark ? Colors.white54 : AppColors.gray,
             fontSize: 14,
           ),
-          contentPadding: EdgeInsets.symmetric(
+          contentPadding: const EdgeInsets.symmetric(
             vertical: 18,
           ),
         ),

@@ -21,18 +21,19 @@ class CustomFavouriteCard extends StatefulWidget {
 class _CustomFavouriteCardState
     extends State<CustomFavouriteCard> {
   bool isFavorite = true;
-
+  late final isDark =
+      Theme.of(context).brightness == Brightness.dark;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: isDark ? AppColors.black : AppColors.white,
           borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(.06),
+              color: AppColors.black.withOpacity(.06),
               blurRadius: 12,
               offset: const Offset(0, 5),
             ),
@@ -77,7 +78,7 @@ class _CustomFavouriteCardState
                           isFavorite
                               ? Icons.favorite
                               : Icons.favorite_border,
-                          color: AppColors.darkBlue,
+                          color:isDark ? AppColors.black : AppColors.white,
                           size: 18,
                         ),
                       ),
@@ -98,9 +99,11 @@ class _CustomFavouriteCardState
                     widget.book.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
+                      color: isDark ?  AppColors.white :  AppColors.black,
+
                     ),
                   ),
 
@@ -108,9 +111,10 @@ class _CustomFavouriteCardState
 
                   Text(
                     widget.book.author,
-                    style: const TextStyle(
-                      color: AppColors.gray,
+                    style: TextStyle(
+                      color:       isDark ? AppColors.white : AppColors.gray,
                       fontSize: 11,
+
                     ),
                   ),
 

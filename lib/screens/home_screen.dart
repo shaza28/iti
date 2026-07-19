@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_images.dart';
 import '../core/book_data.dart';
+import '../providers/theme_provider.dart';
 import '../screens/product_details_screen.dart';
 import '../widgets/custom_book_card.dart';
 import '../widgets/custom_banner.dart';
@@ -13,6 +14,8 @@ import '../widgets/custom_search_bar.dart';
 import '../widgets/custom_section_title.dart';
 import 'cart_screen.dart';
 import 'favourite_screen..dart';
+import 'package:provider/provider.dart';
+import '../providers/theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,9 +27,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
 
+    final isDark =
+        context.watch<ThemeProvider>().themeMode == ThemeMode.dark;
+
+    return Scaffold(
+      backgroundColor:
+      isDark ?AppColors.black : AppColors.white,
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: 0,
         onTap: (index) {
@@ -83,21 +90,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 24),
 
-              const Text(
+              Text(
                 "Hello, Reader!",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
+                  color: isDark ? AppColors.white : AppColors.black,
                 ),
               ),
-
               const SizedBox(height: 4),
 
               Text(
                 "Discover your next favorite story.",
                 style: TextStyle(
                   fontSize: 14,
-                  color: AppColors.gray,
+                  color: isDark ? AppColors.white: AppColors.gray,
                 ),
               ),
 

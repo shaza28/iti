@@ -6,6 +6,7 @@ import '../core/theme/app_images.dart';
 import '../core/book_data.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 import '../widgets/custom_favourite_card.dart';
+import 'cart_screen.dart';
 import 'home_screen.dart';
 import 'product_details_screen.dart';
 
@@ -26,28 +27,30 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     "Fiction",
     "Non-Fiction",
   ];
+  late final isDark =
+      Theme.of(context).brightness == Brightness.dark;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: isDark ? AppColors.black : AppColors.white,
 
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor:isDark ? AppColors.black : AppColors.white,
         elevation: 0,
-        title: const Text(
+        title: Text(
           "My Favourites",
           style: TextStyle(
-            color: AppColors.darkBlue,
+            color: isDark ? AppColors.black : AppColors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(
+            icon: Icon(
               Icons.search,
-              color: AppColors.darkBlue,
+              color: isDark ? AppColors.black : AppColors.white,
             ),
           ),
         ],
@@ -166,11 +169,20 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               break;
 
             case 2:
-            // Cart Screen
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CartScreen(),
+                ),
+              );
               break;
 
             case 3:
-            // Profile Screen
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Profile screen coming soon"),
+                ),
+              );
               break;
           }
         },

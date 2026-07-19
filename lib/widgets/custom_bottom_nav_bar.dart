@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../core/theme/app_colors.dart';
-import '../core/theme/app_images.dart';
+import '../providers/theme_provider.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -14,13 +16,18 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark =
+        context.watch<ThemeProvider>().themeMode == ThemeMode.dark;
+
     return BottomNavigationBar(
       currentIndex: currentIndex,
       onTap: onTap,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: AppColors.darkBlue,
-      unselectedItemColor: AppColors.gray,
-      backgroundColor: AppColors.white,
+      unselectedItemColor:
+      isDark ? Colors.white70 : AppColors.gray,
+      backgroundColor:
+      isDark ? const Color(0xFF1E1E1E) : AppColors.white,
       elevation: 8,
       items: const [
         BottomNavigationBarItem(

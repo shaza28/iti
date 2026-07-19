@@ -14,27 +14,28 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor:Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon:  Icon(Icons.arrow_back_ios, color: Theme.of(context).iconTheme.color,),
         ),
-        title: const Text(
+        title: Text(
           "Lumina Books",
           style: TextStyle(
-            color: AppColors.darkBlue,
+            color:  Theme.of(context).textTheme.titleLarge?.color,
             fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 18),
-            child: Icon(Icons.search, color: AppColors.black),
+            padding: EdgeInsets.only(right: 18),
+            child: Icon(Icons.search, color:  Theme.of(context).iconTheme.color,),
           ),
         ],
       ),
@@ -65,7 +66,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     errorBuilder: (context, error, stackTrace) => const Icon(
                       Icons.book,
                       size: 50,
-                    ), // حماية في حال لم يجد الصورة
+                    ),
                   ),
                 ),
               ),
@@ -93,12 +94,14 @@ class ProductDetailsScreen extends StatelessWidget {
             const SizedBox(height: 28),
             Text(
               book.title,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style:TextStyle(fontSize: 22, fontWeight: FontWeight.bold,    color: Theme.of(context).textTheme.bodyLarge?.color,
+              ),
             ),
             const SizedBox(height: 6),
             Text(
               book.author,
-              style: TextStyle(color: AppColors.darkBlue, fontSize: 15),
+              style: TextStyle( fontSize: 15,  color: isDark ? Colors.lightBlueAccent : AppColors.darkBlue,
+              ),
             ),
             const SizedBox(height: 10),
             Row(
@@ -106,7 +109,8 @@ class ProductDetailsScreen extends StatelessWidget {
                 const Icon(Icons.star, color: Colors.amber, size: 18),
                 const SizedBox(width: 4),
                 Text(book.rate),
-                const Text(" (2.4k)", style: TextStyle(color: Colors.grey)),
+                 Text(" (2.4k)", style: TextStyle(    color: isDark ? Colors.lightBlueAccent : AppColors.darkBlue,
+                 )),
               ],
             ),
             const SizedBox(height: 20),
@@ -114,25 +118,26 @@ class ProductDetailsScreen extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                _tag("Literary Fiction"),
-                _tag("Mystery"),
-                _tag("Best Seller"),
+                _tag(context, "Literary Fiction"),
+                _tag(context, "Mystery"),
+                _tag(context, "Best Seller"),
               ],
             ),
             const SizedBox(height: 28),
-            const Text(
+             Text(
               "About the Book",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,    color: Theme.of(context).textTheme.bodyLarge?.color,
+              ),
             ),
             const SizedBox(height: 12),
-            const Text(
+             Text(
               "Step into a world where silence speaks louder than words. "
               "The Midnight Archive follows a mysterious librarian tasked "
               "with guarding forgotten stories and hidden secrets. "
               "Every chapter reveals another mystery that keeps readers engaged.",
               style: TextStyle(
                 fontSize: 15,
-                color: AppColors.gray,
+                color: Theme.of(context).textTheme.bodyMedium?.color,
                 height: 1.7,
               ),
             ),
@@ -141,27 +146,29 @@ class ProductDetailsScreen extends StatelessWidget {
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children:  [
                 Text(
                   "Reader Reviews",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
                 ),
-                Text("View All", style: TextStyle(color: AppColors.darkBlue)),
+                Text("View All", style: TextStyle(    color: isDark ? Colors.lightBlueAccent : AppColors.darkBlue,
+                )),
               ],
             ),
             const SizedBox(height: 16),
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(18),
+                color: Theme.of(context).cardColor,                borderRadius: BorderRadius.circular(18),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                   Text(
                     "Julianne D.",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -172,9 +179,10 @@ class ProductDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
+                   Text(
                     "\"A hauntingly beautiful journey. I couldn't put it down.\"",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),
                   ),
                 ],
               ),
@@ -186,9 +194,10 @@ class ProductDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Price",
-                        style: TextStyle(color: AppColors.gray),
+                        style: TextStyle(   color: Theme.of(context).textTheme.bodyMedium?.color,
+                        ),
                       ),
                       Text(
                         book.price,
@@ -244,14 +253,22 @@ class ProductDetailsScreen extends StatelessWidget {
     );
   }
 
-  static Widget _tag(String text) {
+  Widget _tag(BuildContext context, String text) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 14,
+        vertical: 8,
+      ),
       decoration: BoxDecoration(
-        color: AppColors.whiteBlue,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(text, style: const TextStyle(fontSize: 12)),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 12,
+          color: Theme.of(context).textTheme.bodyMedium?.color,
+        ),
+      ),
     );
-  }
-}
+  }}
